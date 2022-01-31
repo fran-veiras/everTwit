@@ -7,6 +7,7 @@ export default function UserProfile(props) {
   return (
     <Container my={6}>
       <BannerPage />
+      <h1>hola</h1>
     </Container>
   );
 }
