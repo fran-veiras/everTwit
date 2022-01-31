@@ -1,8 +1,10 @@
 import { Box, Button, Container, Flex, Heading, Input } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { Header } from '../../Components/Header';
 import {
   addInfo,
+  fetchData,
   loginWithGitHub,
   loginWithGoogle,
 } from '../../firebase/client';
@@ -10,11 +12,11 @@ import useUser, { USER_STATES } from '../../hooks/useUser';
 import GitHub from '../../public/icons/gitHub';
 import GoogleIcon from '../../public/icons/google';
 import LoginImg from '../../public/LoginImg';
+import { v4 as uuid } from 'uuid';
 
-export default function Login() {
+export default function Login(props) {
   const user = useUser();
-
-  console.log(user);
+  const route = useRouter();
 
   const handleGitHubLogin = () => {
     loginWithGitHub().catch((err) => {
@@ -34,6 +36,18 @@ export default function Login() {
     setName(e.target.value);
   };
 
+  const unique_id = uuid();
+
+  const routeUser =
+    user &&
+    user.uid.slice(0, 4) +
+      user.uid.slice(-5, -2) +
+      name +
+      user.uid.slice(-4) +
+      unique_id.slice(-7);
+
+  console.log(routeUser);
+
   const sendData = (e) => {
     (e.key === 'Enter') & (name.length > 2) &&
       user &&
@@ -43,7 +57,9 @@ export default function Login() {
         name: name,
         categories: [],
         twits: {},
-      });
+        routeUser: routeUser,
+      }) &&
+      route.push(`/user/${routeUser}`);
   };
 
   return (
@@ -104,31 +120,43 @@ export default function Login() {
             ></Flex>
           </Flex>
         </Flex>
-        {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
-          <Flex alignItems="center" justifyContent="center" gridGap={3}>
-            <Heading
-              fontWeight="500"
-              fontSize="3rem"
-              variant="title"
-              color="primary"
-            >
-              Nombre:
-            </Heading>
-            <Input
-              fontSize="3rem"
-              fontWeight="light"
-              fontFamily="Cairo, sans-serif"
-              color="primary"
-              py={8}
-              variant="flushed"
-              width="60%"
-              value={name}
-              onChange={handlerName}
-              onKeyDown={sendData}
-            />
-          </Flex>
-        )}
+        {user !== USER_STATES.NOT_LOGED &&
+          user !== USER_STATES.NOT_KNOWN &&
+          props.value.length === 0 && (
+            <Flex alignItems="center" justifyContent="center" gridGap={3}>
+              <Heading
+                fontWeight="500"
+                fontSize="3rem"
+                variant="title"
+                color="primary"
+              >
+                Nombre:
+              </Heading>
+              <Input
+                fontSize="3rem"
+                fontWeight="light"
+                fontFamily="Cairo, sans-serif"
+                color="primary"
+                py={8}
+                variant="flushed"
+                width="60%"
+                value={name}
+                onChange={handlerName}
+                onKeyDown={sendData}
+              />
+            </Flex>
+          )}
       </Box>
     </Container>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetchData();
+  const data = await JSON.stringify(res);
+  const value = await JSON.parse(data);
+
+  return {
+    props: { value },
+  };
 }

@@ -16,6 +16,10 @@ export const Header = () => {
     route.push('/login');
   };
 
+  const handleProfile = () => {
+    route.push(`/user/${routeUser}`);
+  };
+
   return (
     <Flex alignItems="center" justifyContent="space-between">
       <Brand />
@@ -43,7 +47,7 @@ export const Header = () => {
           </Button>
         )}
         {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
-          <Heading cursor="pointer" variant="subtitle">
+          <Heading onClick={handleProfile} cursor="pointer" variant="subtitle">
             Mi perfil
           </Heading>
         )}

@@ -13,7 +13,7 @@ try {
       token_uri: process.env.TOKEN_URI,
       auth_provider_x509_cert_url: process.env.AUTH_PROVIDER,
       client_x509_cert_url: process.env.CLIENT_CERT_URL,
-      databaseURL: 'https://aboutme-cards.firebaseio.com',
+      databaseURL: 'https://evertwit-3ed1d.firebaseio.com',
     }),
   });
 } catch (e) {}

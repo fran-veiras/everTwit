@@ -48,16 +48,17 @@ export const loginWithGoogle = () => {
 
 var db = firebase.firestore();
 
-export const addInfo = ({ uid, name, email, categories, twits }) => {
+export const addInfo = ({ uid, name, email, categories, twits, routeUser }) => {
   return db
     .collection('users')
-    .doc(uid)
+    .doc(routeUser)
     .set({
       uid,
       name,
       email,
       categories,
       twits,
+      routeUser,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
     });
 };
