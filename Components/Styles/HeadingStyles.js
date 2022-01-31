@@ -3,7 +3,7 @@ export const HeadingComponent = {
   sizes: {},
   variants: {
     brand: {
-      fontSize: '3rem',
+      fontSize: '2.2rem',
       color: 'primary',
       fontFamily: 'Cairo, sans-serif',
       fontWeight: '900',

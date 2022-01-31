@@ -43,3 +43,49 @@ export const loginWithGoogle = () => {
     .signInWithPopup(googleProvider)
     .then(mapUserFromFirebaseAuthToUser);
 };
+
+// dataBase
+
+var db = firebase.firestore();
+
+export const addInfo = ({ uid, name, email, categories, twits }) => {
+  return db
+    .collection('users')
+    .doc(uid)
+    .set({
+      uid,
+      name,
+      email,
+      categories,
+      twits,
+      createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+    });
+};
+
+export const fetchData = () => {
+  return db
+    .collection('users')
+    .get()
+    .then(({ docs }) => {
+      return docs.map((doc) => {
+        const data = doc.data();
+        const id = doc.id;
+        return {
+          ...data,
+          id,
+        };
+      });
+    });
+};
+
+export const signOut = async () => {
+  try {
+    await firebase.auth().signOut();
+
+    this.props.navigator.push({
+      name: 'Login',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
