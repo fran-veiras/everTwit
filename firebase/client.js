@@ -12,6 +12,8 @@ const firebaseConfig = {
 
 firebase.apps.length === 0 && firebase.initializeApp(firebaseConfig);
 
+var db = firebase.firestore();
+
 const mapUserFromFirebaseAuthToUser = (user) => {
   const { email, uid } = user;
 
@@ -45,8 +47,6 @@ export const loginWithGoogle = () => {
 };
 
 // dataBase
-
-var db = firebase.firestore();
 
 export const addInfo = ({ uid, name, email, categories, twits, routeUser }) => {
   return db
