@@ -46,8 +46,6 @@ export default function Login(props) {
       user.uid.slice(-4) +
       unique_id.slice(-7);
 
-  console.log(routeUser);
-
   const sendData = (e) => {
     (e.key === 'Enter') & (name.length > 2) &&
       user &&

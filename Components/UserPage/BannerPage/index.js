@@ -1,8 +1,8 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 
-export const BannerPage = () => {
+export const BannerPage = ({ name }) => {
   return (
     <Box
       width="100%"
@@ -36,7 +36,7 @@ export const BannerPage = () => {
           borderRadius="9999px"
         >
           <Heading variant="super" color="secondary" fontWeight="500">
-            F
+            {name}
           </Heading>
         </Flex>
       </Flex>

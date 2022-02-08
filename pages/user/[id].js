@@ -1,13 +1,21 @@
 import { Container } from '@chakra-ui/react';
 import { Header } from '../../Components/Header';
 import { BannerPage } from '../../Components/UserPage/BannerPage';
+import { NewCatgeorie } from '../../Components/UserPage/NewCategorie';
 import { firestore } from '../../firebase/admin';
+import useUser from '../../hooks/useUser';
 
 export default function UserProfile(props) {
+  const user = useUser();
+
+  console.log(props);
+
   return (
     <Container my={6}>
-      <BannerPage />
-      <h1>hola</h1>
+      <BannerPage name={props.name?.charAt(0)} />
+      {user !== undefined && user !== null && user.uid === props.uid && (
+        <NewCatgeorie route={props.routeUser} />
+      )}
     </Container>
   );
 }

@@ -6,7 +6,7 @@ import React from 'react';
 import useUser, { USER_STATES } from '../../hooks/useUser';
 import { Brand } from '../Styles/Brand';
 
-export const Header = () => {
+export const Header = ({ routeUser }) => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const user = useUser();
@@ -17,7 +17,7 @@ export const Header = () => {
   };
 
   const handleProfile = () => {
-    route.push(`/user/${routeUser}`);
+    routeUser && route.push(`/user/${routeUser}`);
   };
 
   return (

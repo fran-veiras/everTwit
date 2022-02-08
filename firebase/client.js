@@ -49,21 +49,25 @@ export const loginWithGoogle = () => {
 // dataBase
 
 export const addInfo = ({ uid, name, email, categories, twits, routeUser }) => {
-  return db
-    .collection('users')
-    .doc(routeUser)
-    .set({
-      uid,
-      name,
-      email,
-      categories,
-      twits,
-      routeUser,
-      createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-    });
+  const keys = [uid, routeUser];
+
+  keys.map((key) => {
+    return db
+      .collection('users')
+      .doc(key)
+      .set({
+        uid,
+        name,
+        email,
+        categories,
+        twits,
+        routeUser,
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+      });
+  });
 };
 
-export const fetchData = () => {
+export const fetchAllData = () => {
   return db
     .collection('users')
     .get()
@@ -76,6 +80,23 @@ export const fetchData = () => {
           id,
         };
       });
+    });
+};
+
+export const fetchData = (user) => {
+  return db
+    .collection('users')
+    .doc(user)
+    .get()
+    .then((doc) => {
+      const data = doc.data();
+
+      const props = {
+        ...data,
+        data,
+      };
+
+      return props;
     });
 };
 

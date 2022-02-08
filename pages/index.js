@@ -1,9 +1,25 @@
 import { Container, Heading } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { FooterComponent } from '../Components/Footer';
 import { Header } from '../Components/Header';
 import { AboutApp } from '../Components/MainPage/AboutApp';
+import { fetchData } from '../firebase/client';
+import useUser from '../hooks/useUser';
 
 export default function Home() {
+  const [domain, setDomain] = useState([]);
+  const user = useUser();
+
+  async function getData() {
+    const value = await fetchData(user?.uid);
+
+    setDomain(value);
+  }
+
+  useEffect(() => {
+    (domain.length === 0 || domain.data === undefined) && getData();
+  }, [domain]);
+
   return (
     <>
       <>
@@ -21,7 +37,7 @@ export default function Home() {
         />
       </>
       <Container my={6} padding="0px">
-        <Header />
+        <Header routeUser={domain.routeUser} />
         <AboutApp />
       </Container>
       <FooterComponent />
