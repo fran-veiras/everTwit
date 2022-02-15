@@ -1,7 +1,10 @@
-import { Container, Heading, Text } from '@chakra-ui/react';
+import { Container, Flex, Heading, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { firestore } from '../../../firebase/admin';
 import Link from 'next/link';
+import { EditProfile } from '../../../Components/UserPage/editUserPage/editProfile';
+import { EditCategories } from '../../../Components/UserPage/editUserPage/editCategories';
+import { HelpUs } from '../../../Components/UserPage/editUserPage/HelpUs';
 
 export default function Edit(props) {
   console.log(props);
@@ -18,7 +21,12 @@ export default function Edit(props) {
           Volver al perfil 🔙
         </Text>
       </Link>
-      <Heading>Administrador</Heading>
+      <Flex flexDir="column" gridGap={3}>
+        <Heading>Administrador</Heading>
+        <EditProfile />
+        <EditCategories />
+        <HelpUs />
+      </Flex>
     </Container>
   );
 }

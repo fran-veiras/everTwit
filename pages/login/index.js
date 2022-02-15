@@ -56,8 +56,7 @@ export default function Login(props) {
         categories: [],
         twits: {},
         routeUser: routeUser,
-      }) &&
-      route.push(`/user/${routeUser}`);
+      }) & route.push(`/user/${routeUser}`);
   };
 
   return (
@@ -118,43 +117,31 @@ export default function Login(props) {
             ></Flex>
           </Flex>
         </Flex>
-        {user !== USER_STATES.NOT_LOGED &&
-          user !== USER_STATES.NOT_KNOWN &&
-          props.value.length === 0 && (
-            <Flex alignItems="center" justifyContent="center" gridGap={3}>
-              <Heading
-                fontWeight="500"
-                fontSize="3rem"
-                variant="title"
-                color="primary"
-              >
-                Nombre:
-              </Heading>
-              <Input
-                fontSize="3rem"
-                fontWeight="light"
-                fontFamily="Cairo, sans-serif"
-                color="primary"
-                py={8}
-                variant="flushed"
-                width="60%"
-                value={name}
-                onChange={handlerName}
-                onKeyDown={sendData}
-              />
-            </Flex>
-          )}
+        {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
+          <Flex alignItems="center" justifyContent="center" gridGap={3}>
+            <Heading
+              fontWeight="500"
+              fontSize="3rem"
+              variant="title"
+              color="primary"
+            >
+              Nombre:
+            </Heading>
+            <Input
+              fontSize="3rem"
+              fontWeight="light"
+              fontFamily="Cairo, sans-serif"
+              color="primary"
+              py={8}
+              variant="flushed"
+              width="60%"
+              value={name}
+              onChange={handlerName}
+              onKeyDown={sendData}
+            />
+          </Flex>
+        )}
       </Box>
     </Container>
   );
-}
-
-export async function getServerSideProps(context) {
-  const res = await fetchData();
-  const data = await JSON.stringify(res);
-  const value = await JSON.parse(data);
-
-  return {
-    props: { value },
-  };
 }
