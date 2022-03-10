@@ -5,9 +5,9 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
-  Text,
-} from '@chakra-ui/react';
-import React from 'react';
+  Text
+} from '@chakra-ui/react'
+import React from 'react'
 
 export const HelpUs = () => {
   return (
@@ -15,5 +15,5 @@ export const HelpUs = () => {
       <Text variant="paragraph">Ayuda</Text>
       <Flex></Flex>
     </Flex>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-var admin = require('firebase-admin');
+const admin = require('firebase-admin')
 
 try {
   admin.initializeApp({
@@ -13,9 +13,11 @@ try {
       token_uri: process.env.TOKEN_URI,
       auth_provider_x509_cert_url: process.env.AUTH_PROVIDER,
       client_x509_cert_url: process.env.CLIENT_CERT_URL,
-      databaseURL: 'https://evertwit-3ed1d.firebaseio.com',
-    }),
-  });
-} catch (e) {}
+      databaseURL: 'https://evertwit-3ed1d.firebaseio.com'
+    })
+  })
+} catch (e) {
+  console.log(e)
+}
 
-export const firestore = admin.firestore();
+export const firestore = admin.firestore()

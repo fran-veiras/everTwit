@@ -1,9 +1,9 @@
-import * as React from 'react';
+import * as React from 'react'
 
 const GoogleIcon = (props) => (
   <svg
     style={{
-      enableBackground: 'new 0 0 56.6934 56.6934',
+      enableBackground: 'new 0 0 56.6934 56.6934'
     }}
     className="icon"
     height={24}
@@ -21,6 +21,6 @@ const GoogleIcon = (props) => (
       }
     `}</style>
   </svg>
-);
+)
 
-export default GoogleIcon;
+export default GoogleIcon

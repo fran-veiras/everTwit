@@ -1,6 +1,6 @@
-import { Box, Button, Flex, Heading } from '@chakra-ui/react';
-import Image from 'next/image';
-import React from 'react';
+import { Box, Button, Flex, Heading } from '@chakra-ui/react'
+import Image from 'next/image'
+import React from 'react'
 
 export const BannerPage = ({ name }) => {
   return (
@@ -9,7 +9,7 @@ export const BannerPage = ({ name }) => {
       height="15vw"
       background="black"
       borderRadius="15px"
-      backgroundImage={`/user/mountains.jpeg`}
+      backgroundImage={'/user/mountains.jpeg'}
       backgroundPosition="center"
       backgroundRepeat="no-repeat"
       backgroundSize="cover"
@@ -41,5 +41,5 @@ export const BannerPage = ({ name }) => {
         </Flex>
       </Flex>
     </Box>
-  );
-};
+  )
+}

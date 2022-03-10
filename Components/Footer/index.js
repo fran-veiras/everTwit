@@ -1,6 +1,6 @@
-import { Box, Container, Flex, Text } from '@chakra-ui/react';
-import React from 'react';
-import { Brand } from '../Styles/Brand';
+import { Box, Container, Flex, Text } from '@chakra-ui/react'
+import React from 'react'
+import { Brand } from '../Styles/Brand'
 
 export const FooterComponent = () => {
   return (
@@ -20,5 +20,5 @@ export const FooterComponent = () => {
         }
       `}</style>
     </footer>
-  );
-};
+  )
+}

@@ -1,42 +1,42 @@
-import { Box, Button, Container, Flex, Heading, Input } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { Header } from '../../Components/Header';
+import { Box, Button, Container, Flex, Heading, Input } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { Header } from '../../Components/Header'
 import {
   addInfo,
   fetchData,
   loginWithGitHub,
-  loginWithGoogle,
-} from '../../firebase/client';
-import useUser, { USER_STATES } from '../../hooks/useUser';
-import GitHub from '../../public/icons/gitHub';
-import GoogleIcon from '../../public/icons/google';
-import LoginImg from '../../public/LoginImg';
-import { v4 as uuid } from 'uuid';
+  loginWithGoogle
+} from '../../firebase/client'
+import useUser, { USER_STATES } from '../../hooks/useUser'
+import GitHub from '../../public/icons/gitHub'
+import GoogleIcon from '../../public/icons/google'
+import LoginImg from '../../public/LoginImg'
+import { v4 as uuid } from 'uuid'
 
-export default function Login(props) {
-  const user = useUser();
-  const route = useRouter();
+export default function Login (props) {
+  const user = useUser()
+  const route = useRouter()
 
   const handleGitHubLogin = () => {
     loginWithGitHub().catch((err) => {
-      console.log('nada');
-    });
-  };
+      console.log('nada')
+    })
+  }
 
   const handleGoogleLogin = () => {
     loginWithGoogle().catch((err) => {
-      console.log(err);
-    });
-  };
+      console.log(err)
+    })
+  }
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState('')
 
   const handlerName = (e) => {
-    setName(e.target.value);
-  };
+    setName(e.target.value)
+  }
 
-  const unique_id = uuid();
+  const unique_id = uuid()
 
   const routeUser =
     user &&
@@ -44,7 +44,7 @@ export default function Login(props) {
       user.uid.slice(-5, -2) +
       name +
       user.uid.slice(-4) +
-      unique_id.slice(-7);
+      unique_id.slice(-7)
 
   const sendData = (e) => {
     (e.key === 'Enter') & (name.length > 2) &&
@@ -55,9 +55,9 @@ export default function Login(props) {
         name: name,
         categories: [],
         twits: {},
-        routeUser: routeUser,
-      }) & route.push(`/user/${routeUser}`);
-  };
+        routeUser: routeUser
+      }) & route.push(`/user/${routeUser}`)
+  }
 
   return (
     <Container my={6}>
@@ -143,5 +143,5 @@ export default function Login(props) {
         )}
       </Box>
     </Container>
-  );
+  )
 }

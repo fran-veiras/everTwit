@@ -1,6 +1,6 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import React from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react'
+import Image from 'next/image'
+import React from 'react'
 
 export const TwitExample = () => {
   return (
@@ -43,5 +43,5 @@ export const TwitExample = () => {
         <Box width="200px" height="20px" background="gray" borderRadius="7px" />
       </Flex>
     </Box>
-  );
-};
+  )
+}

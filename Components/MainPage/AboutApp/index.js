@@ -1,9 +1,9 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
-import React from 'react';
-import { AboutPrice } from './AboutPrice';
-import { AppDescription } from './AppDescription';
-import { Example } from './Example';
-import { Steps } from './Steps';
+import { Box, Flex, Heading } from '@chakra-ui/react'
+import React from 'react'
+import { AboutPrice } from './AboutPrice'
+import { AppDescription } from './AppDescription'
+import { Example } from './Example'
+import { Steps } from './Steps'
 
 export const AboutApp = () => {
   return (
@@ -20,5 +20,5 @@ export const AboutApp = () => {
         <Example />
       </Flex>
     </Box>
-  );
-};
+  )
+}

@@ -8,9 +8,9 @@ export const ButtonStyles = {
       color: 'primary',
       transition: 'ease 0.2s',
       _hover: {
-        bg: 'tertiary',
-      },
-    },
+        bg: 'tertiary'
+      }
+    }
   },
-  defaultProps: {},
-};
+  defaultProps: {}
+}

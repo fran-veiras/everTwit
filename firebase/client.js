@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBaqyBjtlxeNzU4tUDyRfQ1Vcf-4obgSSU',
@@ -7,49 +7,49 @@ const firebaseConfig = {
   storageBucket: 'evertwit-3ed1d.appspot.com',
   messagingSenderId: '860268111903',
   appId: '1:860268111903:web:4026ce06c45777dd484d2a',
-  measurementId: 'G-H4WGLR9JQL',
-};
+  measurementId: 'G-H4WGLR9JQL'
+}
 
-firebase.apps.length === 0 && firebase.initializeApp(firebaseConfig);
+firebase.apps.length === 0 && firebase.initializeApp(firebaseConfig)
 
-var db = firebase.firestore();
+const db = firebase.firestore()
 
 const mapUserFromFirebaseAuthToUser = (user) => {
-  const { email, uid } = user;
+  const { email, uid } = user
 
   return {
     email,
-    uid,
-  };
-};
+    uid
+  }
+}
 
 export const onAuthStateChange = (onChange) => {
   return firebase.auth().onAuthStateChanged((user) => {
-    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null;
-    onChange(normalizedUser);
-  });
-};
+    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
+    onChange(normalizedUser)
+  })
+}
 
 export const loginWithGitHub = () => {
-  const githubProvider = new firebase.auth.GithubAuthProvider();
+  const githubProvider = new firebase.auth.GithubAuthProvider()
   return firebase
     .auth()
     .signInWithPopup(githubProvider)
-    .then(mapUserFromFirebaseAuthToUser);
-};
+    .then(mapUserFromFirebaseAuthToUser)
+}
 
 export const loginWithGoogle = () => {
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const googleProvider = new firebase.auth.GoogleAuthProvider()
   return firebase
     .auth()
     .signInWithPopup(googleProvider)
-    .then(mapUserFromFirebaseAuthToUser);
-};
+    .then(mapUserFromFirebaseAuthToUser)
+}
 
 // dataBase
 
 export const addInfo = ({ uid, name, email, categories, twits, routeUser }) => {
-  const keys = [uid, routeUser];
+  const keys = [uid, routeUser]
 
   keys.map((key) => {
     return db
@@ -62,10 +62,10 @@ export const addInfo = ({ uid, name, email, categories, twits, routeUser }) => {
         categories,
         twits,
         routeUser,
-        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-      });
-  });
-};
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date())
+      })
+  })
+}
 
 export const fetchAllData = () => {
   return db
@@ -73,15 +73,15 @@ export const fetchAllData = () => {
     .get()
     .then(({ docs }) => {
       return docs.map((doc) => {
-        const data = doc.data();
-        const id = doc.id;
+        const data = doc.data()
+        const id = doc.id
         return {
           ...data,
-          id,
-        };
-      });
-    });
-};
+          id
+        }
+      })
+    })
+}
 
 export const fetchData = (user) => {
   return db
@@ -89,25 +89,35 @@ export const fetchData = (user) => {
     .doc(user)
     .get()
     .then((doc) => {
-      const data = doc.data();
+      const data = doc.data()
 
       const props = {
         ...data,
-        data,
-      };
+        data
+      }
 
-      return props;
-    });
-};
+      return props
+    })
+}
+
+export default function editData (routeUser, categories, twits, name) {
+  const ref = db.collection('users').doc(routeUser)
+
+  return ref.update({
+    name,
+    categories,
+    twits
+  })
+}
 
 export const signOut = async () => {
   try {
-    await firebase.auth().signOut();
+    await firebase.auth().signOut()
 
     this.props.navigator.push({
-      name: 'Login',
-    });
+      name: 'Login'
+    })
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}

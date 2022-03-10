@@ -1,14 +1,14 @@
-import { Container } from '@chakra-ui/react';
-import { Header } from '../../Components/Header';
-import { BannerPage } from '../../Components/UserPage/BannerPage';
-import { NewCatgeorie } from '../../Components/UserPage/NewCategorie';
-import { firestore } from '../../firebase/admin';
-import useUser from '../../hooks/useUser';
+import { Container } from '@chakra-ui/react'
+import { Header } from '../../Components/Header'
+import { BannerPage } from '../../Components/UserPage/BannerPage'
+import { NewCatgeorie } from '../../Components/UserPage/NewCategorie'
+import { firestore } from '../../firebase/admin'
+import useUser from '../../hooks/useUser'
 
-export default function UserProfile(props) {
-  const user = useUser();
+export default function UserProfile (props) {
+  const user = useUser()
 
-  console.log(props);
+  console.log(props)
 
   return (
     <Container my={6}>
@@ -17,38 +17,38 @@ export default function UserProfile(props) {
         <NewCatgeorie route={props.routeUser} />
       )}
     </Container>
-  );
+  )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   return {
     paths: [{ params: { id: 'axAa4yZFrancisco VeirasyZS2' } }],
-    fallback: true,
-  };
+    fallback: true
+  }
 }
 
-export async function getStaticProps(context) {
-  const { params } = context;
-  const { id } = params;
+export async function getStaticProps (context) {
+  const { params } = context
+  const { id } = params
 
   return firestore
     .collection('users')
     .doc(id)
     .get()
     .then((doc) => {
-      const data = doc.data();
-      const id = doc.id;
-      const { createdAt } = data;
+      const data = doc.data()
+      const id = doc.id
+      const { createdAt } = data
 
       const props = {
         ...data,
         id,
-        createdAt: +createdAt.toDate(),
-      };
+        createdAt: +createdAt.toDate()
+      }
 
-      return { props, revalidate: 1 };
+      return { props, revalidate: 1 }
     })
     .catch(() => {
-      return { props: {} };
-    });
+      return { props: {} }
+    })
 }

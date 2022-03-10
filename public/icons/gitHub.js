@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from 'react'
 
-function GitHub(props) {
+function GitHub (props) {
   return (
     <>
       <svg
@@ -25,6 +25,6 @@ function GitHub(props) {
         }
       `}</style>
     </>
-  );
+  )
 }
-export default GitHub;
+export default GitHub

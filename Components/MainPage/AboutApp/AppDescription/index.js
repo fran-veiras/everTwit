@@ -1,5 +1,5 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Heading, Text } from '@chakra-ui/react'
+import React from 'react'
 
 export const AppDescription = () => {
   return (
@@ -17,5 +17,5 @@ export const AppDescription = () => {
         </Text>
       </Box>
     </Box>
-  );
-};
+  )
+}

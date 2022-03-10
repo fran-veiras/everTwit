@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 const LoginImg = (props) => (
   <svg
@@ -91,6 +91,6 @@ const LoginImg = (props) => (
       fill="#2f2e41"
     />
   </svg>
-);
+)
 
-export default LoginImg;
+export default LoginImg

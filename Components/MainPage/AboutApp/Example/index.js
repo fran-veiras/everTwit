@@ -1,7 +1,7 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
-import React from 'react';
-import { TwitExample } from './TwitExample';
-import { LatestTwitExample } from './TwitExample/latest';
+import { Box, Flex, Heading } from '@chakra-ui/react'
+import React from 'react'
+import { TwitExample } from './TwitExample'
+import { LatestTwitExample } from './TwitExample/latest'
 
 export const Example = () => {
   return (
@@ -9,7 +9,7 @@ export const Example = () => {
       <Heading variant="title">Ordená por categorias</Heading>
       <Flex my={4} gridGap={3}>
         <Box background="blue" borderRadius="15px" p={2} display="flex">
-          <Heading variant="subtitle">{`Programación </>`}</Heading>
+          <Heading variant="subtitle">{'Programación </>'}</Heading>
         </Box>
         <Box background="blue" borderRadius="15px" p={2} display="flex">
           <Heading variant="subtitle">Diseño 🧑‍🎨</Heading>
@@ -28,5 +28,5 @@ export const Example = () => {
         <LatestTwitExample />
       </Flex>
     </Box>
-  );
-};
+  )
+}

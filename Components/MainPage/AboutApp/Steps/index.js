@@ -1,6 +1,6 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
-import Link from 'next/link';
-import React from 'react';
+import { Box, Flex, Heading } from '@chakra-ui/react'
+import Link from 'next/link'
+import React from 'react'
 
 export const Steps = () => {
   return (
@@ -67,7 +67,7 @@ export const Steps = () => {
             _hover={{
               background: 'secondary',
               transition: '0.2s',
-              transform: 'scale(1.1)',
+              transform: 'scale(1.1)'
             }}
           >
             <Heading variant="subtitle">¡Comenzar! 🚀</Heading>
@@ -75,5 +75,5 @@ export const Steps = () => {
         </Flex>
       </Link>
     </Flex>
-  );
-};
+  )
+}

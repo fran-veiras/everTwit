@@ -1,6 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react';
-import React from 'react';
-import Link from 'next/link';
+import { Button, Flex } from '@chakra-ui/react'
+import React from 'react'
+import Link from 'next/link'
 
 export const NewCatgeorie = ({ route }) => {
   return (
@@ -8,11 +8,11 @@ export const NewCatgeorie = ({ route }) => {
       <Link
         href={{
           pathname: '/user/[id]/edit',
-          query: { id: `${route}` },
+          query: { id: `${route}` }
         }}
       >
         <Button>Nueva Categoria +</Button>
       </Link>
     </Flex>
-  );
-};
+  )
+}

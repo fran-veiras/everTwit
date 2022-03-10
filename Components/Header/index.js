@@ -1,24 +1,24 @@
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, useColorMode } from '@chakra-ui/react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
-import useUser, { USER_STATES } from '../../hooks/useUser';
-import { Brand } from '../Styles/Brand';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { Box, Button, Flex, Heading, useColorMode } from '@chakra-ui/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React from 'react'
+import useUser, { USER_STATES } from '../../hooks/useUser'
+import { Brand } from '../Styles/Brand'
 
 export const Header = ({ routeUser }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
 
-  const user = useUser();
-  const route = useRouter();
+  const user = useUser()
+  const route = useRouter()
 
   const handleLogin = () => {
-    route.push('/login');
-  };
+    route.push('/login')
+  }
 
   const handleProfile = () => {
-    routeUser && route.push(`/user/${routeUser}`);
-  };
+    routeUser && route.push(`/user/${routeUser}`)
+  }
 
   return (
     <Flex alignItems="center" justifyContent="space-between">
@@ -66,5 +66,5 @@ export const Header = ({ routeUser }) => {
         )}
       </Box>
     </Flex>
-  );
-};
+  )
+}

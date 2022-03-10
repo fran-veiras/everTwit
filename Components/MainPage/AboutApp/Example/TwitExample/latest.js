@@ -1,6 +1,6 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import React from 'react';
+import { Box, Flex, Text } from '@chakra-ui/react'
+import Image from 'next/image'
+import React from 'react'
 
 export const LatestTwitExample = () => {
   return (
@@ -49,5 +49,5 @@ export const LatestTwitExample = () => {
         left="0"
       ></Box>
     </Box>
-  );
-};
+  )
+}
